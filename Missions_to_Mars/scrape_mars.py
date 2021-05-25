@@ -50,3 +50,12 @@ def scrape():
     
     mars_facts_table=mars_facts.to_html()
     mars_facts_table.replace('\n','')
+
+    # Mars Hemispheres
+    hemisphere_clean_url='https://astrogeology.usgs.gov'
+    hemisphere_url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+
+    browser.visit(hemisphere_url)
+    time.sleep(1)
+    html = browser.html
+    soup = bs(html, 'html.parser')
