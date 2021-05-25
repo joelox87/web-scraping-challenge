@@ -59,3 +59,27 @@ def scrape():
     time.sleep(1)
     html = browser.html
     soup = bs(html, 'html.parser')
+
+    items = soup.find_all('div', class_='item')
+
+    #Print hemisphere headers
+    img_urls = []
+    headers = []
+    for item in items:
+        img_urls.append(hemisphere_clean_url + item.find('a')['href'])
+        headers.append(item.find('h3').text.strip())
+
+    browser.visit(img_urls[0])
+    html = browser.html
+    soup = bs(html, 'html.parser')
+    img_url_base = hemisphere_clean_url+soup.find('img',class_='wide-image')['src']
+    
+    img_urls_dict = []
+    for img_url_base in img_urls:
+        browser.visit(img_url_base)
+        html = browser.html
+        soup = bs(html, 'html.parser')
+        img_url_base = hemisphere_clean_url+soup.find('img',class_='wide-image')['src']
+        img_urls_dict.append(img_url_base)
+        
+    img_urls_dict
