@@ -30,11 +30,10 @@ def scrape():
     # JPL Featured Image
     jpl_url="https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
     jpl_url_clean="https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/"
-    browser.visit(jpl_url_clean)
 
     # HTML object
     browser.visit(jpl_url)
-    time.sleep(1)
+    time.sleep(2)
     html = browser.html
     soup = bs(html, 'html.parser')
 
@@ -57,12 +56,12 @@ def scrape():
     hemisphere_url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
 
     browser.visit(hemisphere_url)
-    time.sleep(1)
+    time.sleep(2)
     html = browser.html
     soup = bs(html, 'html.parser')
 
     items = soup.find_all('div', class_='item')
-
+    print (items)
     #Print hemisphere headers
     img_urls = []
     headers = []
@@ -102,4 +101,6 @@ def scrape():
     return mars_page
 
 init_browser()
-scrape()
+mars_page = scrape()
+
+print (mars_page)
