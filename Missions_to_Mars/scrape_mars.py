@@ -4,6 +4,7 @@ import pymongo
 from splinter import Browser
 from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
+import time
 import pandas as pd
 
 def init_browser():
@@ -44,7 +45,7 @@ def scrape():
     tables=pd.read_html(mars_facts_url)
     
     mars_facts=tables[0]
-    mars_facts=mars_fact.rename(columns={0:"Profile",1:"Value"},errors="raise")
+    mars_facts=mars_facts.rename(columns={0:"Profile",1:"Value"},errors="raise")
     mars_facts.set_index("Profile",inplace=True)
     mars_facts
     
@@ -96,6 +97,9 @@ def scrape():
         "title_image_urls": title_image_urls
     }
     
+
     browser.quit()
     return mars_page
 
+init_browser()
+scrape()
