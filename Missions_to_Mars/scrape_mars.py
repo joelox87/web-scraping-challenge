@@ -82,4 +82,20 @@ def scrape():
         img_url_base = hemisphere_clean_url+soup.find('img',class_='wide-image')['src']
         img_urls_dict.append(img_url_base)
         
-    img_urls_dict
+    title_image_urls = []
+    for i in range(len(headers)):
+        title_image_urls.append({
+            'title':headers[i],
+            'img_url':img_urls[i]})
+
+    mars_page = {
+        "news_title": news_title,
+        "news_p": news_p,
+        "featured_image_url": featured_image_url,
+        "mars_facts_table": mars_facts_table,
+        "title_image_urls": title_image_urls
+    }
+    
+    browser.quit()
+    return mars_page
+
