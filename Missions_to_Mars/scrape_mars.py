@@ -61,7 +61,7 @@ def scrape():
     soup = bs(html, 'html.parser')
 
     items = soup.find_all('div', class_='item')
-    print (items)
+    #print (items)
     #Print hemisphere headers
     img_urls = []
     headers = []
@@ -99,8 +99,3 @@ def scrape():
 
     browser.quit()
     return mars_page
-
-init_browser()
-mars_page = scrape()
-
-print (mars_page)
