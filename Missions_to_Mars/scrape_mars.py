@@ -86,7 +86,7 @@ def scrape():
     for i in range(len(headers)):
         title_image_urls.append({
             'title':headers[i],
-            'img_url':img_urls[i]})
+            'img_url':img_urls_dict[i]})
 
     mars_page = {
         "news_title": news_title,
